@@ -14,15 +14,26 @@ img {
 
 table th {
     text-align: center;
+    color:#90009F;
 }
 
 table a {
     color: #90009F;
 }
-table td a img{
-        width: 30px;
-        height: 30px;
-    }
+
+table td a img {
+    width: 30px;
+    height: 30px;
+}
+
+#menu2 {
+    margin-left: 250px;
+}
+
+#agenda {
+    width: 350px;
+    margin-left: 25px;
+}
 </style>
 
 <head>
@@ -74,10 +85,50 @@ table td a img{
             </thead>
         </table>
     </div>
+    <div class="col text-center p-3 rounded-pill" style="background-color:#E14B9A;" id="agenda">
+        <strong class="h3" style="color:#fff; ">Agenda general</strong>
+    </div>
+    <br>
+    <div class="container " id="menu2">
+        <div class="row">
+            <div class="col">
+                <form method="get" action="sesion.php">
+                    <button style="background-color: #FEF6FF;" type="submit" class="btn btn-primary btn-block">
+                        <strong class="h3" style="color:#90009F;">
+                            <img src="img/ojomorado.PNG" alt="logo" style="height:35px;">
+                            Ver citas
+                        </strong>
+                    </button>
+                </form>
+            </div>
+            <div class="col">
+                <form method="get" action="sesion.php">
+                    <button style="background-color: #FEF6FF;" type="submit" class="btn btn-primary btn-block">
+                        <strong class="h3" style="color:#90009F;">
+                            <img src="img/cuadradosmorados.PNG" alt="logo" style="height:35px;">
+                            Agendar citas
+                        </strong>
+                    </button>
+                </form>
+            </div>
+            <div class="col">
+                <form method="get" action="sesion.php">
+                    <button style="background-color: #FEF6FF;" type="submit" class="btn btn-primary btn-block">
+                        <strong class="h3" style="color:#90009F;">
+                            <img src="img/listamorado.PNG" alt="logo" style="height:35px;">
+                            Agendar evento
+                        </strong>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <br>
     <div class="container m-3">
         <div class="row">
-            <div class="col text-center p-5 rounded-pill" style="background-color:#E14B9A;">
-                <strong class="h3" style="color:#fff; ">Agenda general</strong>
+            <div class="col text-center p-3" style="background-color:#FFECF4;">
+                <strong class="h3" style="color:#E14B9A; ">Julio - 05/07/2022</strong>
             </div>
             <div class="col"></div>
             <div class="col"></div>
@@ -162,7 +213,94 @@ table td a img{
             </div>
         </div>
     </div>
+    <div class="container m-3">
+        <div class="row">
+            <div class="col text-center p-3" style="background-color:#FFECF4;">
+                <strong class="h3" style="color:#E14B9A; ">Julio - 06/07/2022</strong>
+            </div>
+            <div class="col"></div>
+            <div class="col"></div>
+        </div>
+    </div>
+    <br>
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">Paciente</th>
+                            <th scope="col">Fecha</th>
+                            <th scope="col">Horario</th>
+                            <th scope="col">Psicologo</th>
+                            <th scope="col">No. Expediente</th>
+                            <th scope="col">Sexo</th>
+                            <th scope="col">Acción</th>
+                        </tr>
+                    </thead>
+                    <tr>
+                        <td>Jonathan Josue Chel Madrid</td>
+                        <td>24/07/2022</td>
+                        <td>9:00am</td>
+                        <td>Andrea Peréz Martínez</td>
+                        <td>MOPB-IMPIEMH-171-2022</td>
+                        <td>Masculino</td>
+                        <td>
+                            <a href="verDato.php">
+                                <img src="img/icon-lapiz.PNG" class="img-fluid img-thumbnail">
+                            </a>
+                            <a href="verDato.php">
+                                <img src="img/icon-ojo.PNG" class="img-fluid img-thumbnail">
+                            </a>
+                            <a href="verDato.php">
+                                <img src="img/icon-bote.PNG" class="img-fluid img-thumbnail">
+                            </a>
+                        </td>
 
+                    </tr>
+                    <tr>
+                        <td>Ashanty Lizeth Ceballos Pech</td>
+                        <td>24/07/2022</td>
+                        <td>9:00am</td>
+                        <td>Andrea Peréz Martínez</td>
+                        <td>MOPB-IMPIEMH-171-2022</td>
+                        <td>Femenino</td>
+                        <td>
+                            <a href="verDato.php">
+                                <img src="img/icon-lapiz.PNG" class="img-fluid img-thumbnail">
+                            </a>
+                            <a href="verDato.php">
+                                <img src="img/icon-ojo.PNG" class="img-fluid img-thumbnail">
+                            </a>
+                            <a href="verDato.php">
+                                <img src="img/icon-bote.PNG" class="img-fluid img-thumbnail">
+                            </a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Brayan Ulises Luna Castro</td>
+                        <td>24/07/2022</td>
+                        <td>9:00am</td>
+                        <td>Andrea Peréz Martínez</td>
+                        <td>MOPB-IMPIEMH-171-2022</td>
+                        <td>Masculino</td>
+                        <td>
+                            <a href="verDato.php">
+                                <img src="img/icon-lapiz.PNG" class="img-fluid img-thumbnail">
+                            </a>
+                            <a href="verDato.php">
+                                <img src="img/icon-ojo.PNG" class="img-fluid img-thumbnail">
+                            </a>
+                            <a href="verDato.php">
+                                <img src="img/icon-bote.PNG" class="img-fluid img-thumbnail">
+                            </a>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
 </body>
 
 <div class="footer mt-2 text-center">
