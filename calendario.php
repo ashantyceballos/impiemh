@@ -42,49 +42,10 @@ table td a img {
     <title>Bienvenido IMPIEMH</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-
 </head>
-<nav class="navbar  text-dark" style="background-color: #956F94; ">
-    <div class="container-fluid">
-        <a class="navbar h3" href="index.php" style="color: rgb(255, 255, 255);">IMPIEMH</a>
-        <a class="nav-link h3" style="color: rgb(255, 255, 255);" href="sesion.php">Usuario</a>
-    </div>
-</nav>
-
-<body>
-    <div>
-        <table class="table table-borderless" style="background-color:#FFECF4;">
-            <thead>
-                <tr>
-                    <th scope="col">
-                        <img src="img/agenda.png" alt="logo">
-                        <br>
-                        <a href="agenda.php">Agenda</a>
-                    </th>
-                    <th scope="col">
-                        <img src="img/nuevopaciente.PNG" alt="logo">
-                        <br>
-                        <a href="pacienteNuevo.php">Nuevo Paciente</a>
-                    </th>
-                    <th scope="col">
-                        <img src="img/llamada.PNG" alt="logo">
-                        <br>
-                        <a href="llamadaDeRescate.php">Llamada de emergencia</a>
-                    </th>
-                    <th scope="col">
-                        <img src="img/listadopacientes.PNG" alt="logo">
-                        <br>
-                        <a href="listaDePacientes.php">Listado de pacientes</a>
-                    </th>
-                    <th scope="col">
-                        <img src="img/expedientes.PNG" alt="logo">
-                        <br>
-                        <a href="expedientes.php">Expedientes</a>
-                    </th>
-                </tr>
-            </thead>
-        </table>
-    </div>
+<?php
+include './navegador/nav.php';
+?>
     <div class="col text-center p-3 rounded-pill" style="background-color:#E14B9A;" id="agenda">
         <strong class="h3" style="color:#fff; ">Agenda general</strong>
     </div>
@@ -92,7 +53,7 @@ table td a img {
     <div class="container " id="menu2">
         <div class="row">
             <div class="col">
-                <form method="get" action="sesion.php">
+                <form method="get" action="verCitas.php">
                     <button style="background-color: #FEF6FF;" type="submit" class="btn btn-primary btn-block">
                         <strong class="h3" style="color:#90009F;">
                             <img src="img/ojomorado.PNG" alt="logo" style="height:35px;">
@@ -102,7 +63,7 @@ table td a img {
                 </form>
             </div>
             <div class="col">
-                <form method="get" action="sesion.php">
+                <form method="get" action="agendacita.php">
                     <button style="background-color: #FEF6FF;" type="submit" class="btn btn-primary btn-block">
                         <strong class="h3" style="color:#90009F;">
                             <img src="img/cuadradosmorados.PNG" alt="logo" style="height:35px;">
@@ -112,7 +73,7 @@ table td a img {
                 </form>
             </div>
             <div class="col">
-                <form method="get" action="sesion.php">
+                <form method="get" action="agendarEvento.php">
                     <button style="background-color: #FEF6FF;" type="submit" class="btn btn-primary btn-block">
                         <strong class="h3" style="color:#90009F;">
                             <img src="img/listamorado.PNG" alt="logo" style="height:35px;">
