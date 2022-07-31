@@ -12,7 +12,9 @@
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.2/dist/leaflet.css" />
 </head>
 <?php
-include './navegador/nav.php';
+    include './navegador/nav.php';
+    $server = "impiemh-apirest.herokuapp.com";
+    $data = json_decode(file_get_contents("http://".$server."/controller/productos.php?opcion=get"), true);
 ?>
 <div class="container">
     <div class="row">
@@ -25,26 +27,22 @@ include './navegador/nav.php';
             <br>
         </div>
         <div class="container mt-3">
-            <form>
+            <form action="<?php $_SERVER['PHP_SELF']?>" method= "POST">
                 <div class="container">
                     <div class="row">
                         <div class="col-xs-12">
-                            <div class="form-group">
-                                <label for="">Fecha</label>
-                                <div class="input-group">
-                                    <input name="dia" type="text" required class="form-control" placeholder="Día">
-                                    <span class="input-group-addon">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-                                    <input name="mes" type="text" required class="form-control" placeholder="Mes">
-                                    <span class="input-group-addon">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-                                </div>
-                            </div>
+                            <label for="">Fecha</label><br>
+                            <?php
+                                date_default_timezone_set('America/Mexico_City');
+                                echo date('d/m/y');
+                            ?><br><br>
                         </div>
                     </div>
                 </div>
                 <div class="form-row">
                     <div class="form-group col-md-6">
                         <label for="inputCity">No. Expediente</label>
-                        <input type="text" class="form-control" id="inputCity">
+                        <input type="text" name="noexpediente" class="form-control" id="inputCity">
                     </div>
                 </div>
                 <strong>Datos generales</strong>
@@ -54,12 +52,12 @@ include './navegador/nav.php';
                         <div class="col-xs-12">
                             <div class="form-group">
                                 <div class="input-group">
-                                    <input name="name" type="text" required class="form-control" placeholder="Nombre">
+                                    <input name="nombre" type="text" required class="form-control" placeholder="Nombre(s)">
                                     <span class="input-group-addon">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-                                    <input name="apellidoP" type="text" required class="form-control"
+                                    <input name="apellidop" type="text" required class="form-control"
                                         placeholder="Apellido paterno">
                                     <span class="input-group-addon">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-                                    <input name="apellidoM" type="text" required class="form-control"
+                                    <input name="apellidom" type="text" required class="form-control"
                                         placeholder="Apellido materno">
                                 </div>
                             </div>
@@ -71,22 +69,22 @@ include './navegador/nav.php';
                 <div class="form-row">
                     <div class="form-group col-md-6">
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1"
-                                value="option1" checked>
+                            <input class="form-check-input" type="radio" name="sexo" id="exampleRadios1"
+                                value="Femenino" checked>
                             <label class="form-check-label" for="exampleRadios1">
                                 Femenino
                             </label>
                         </div>
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2"
-                                value="option2">
+                            <input class="form-check-input" type="radio" name="sexo" id="exampleRadios2"
+                                value="Masculino">
                             <label class="form-check-label" for="exampleRadios2">
                                 Masculino
                             </label>
                         </div>
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios3"
-                                value="option3">
+                            <input class="form-check-input" type="radio" name="sexo" id="exampleRadios3"
+                                value="LGBTTTIQ+">
                             <label class="form-check-label" for="exampleRadios3">
                                 LGBTTTIQ+
                             </label>
@@ -98,13 +96,13 @@ include './navegador/nav.php';
                 <div class="form-row">
                     <div class="form-group col-md-6">
                         <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+                            <input class="form-check-input" type="checkbox" name="servicio" value="Si" id="defaultCheck1">
                             <label class="form-check-label" for="defaultCheck1">
                                 Si
                             </label>
                         </div>
                         <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="defaultCheck2">
+                            <input class="form-check-input" type="checkbox" name="servicio" value="No" id="defaultCheck2">
                             <label class="form-check-label" for="defaultCheck2">
                                 No
                             </label>
@@ -116,13 +114,13 @@ include './navegador/nav.php';
                         <div class="col-xs-12">
                             <div class="form-group">
                                 <div class="input-group">
-                                    <input name="dia" type="text" required class="form-control"
+                                    <input name="lugarnac" type="text" required class="form-control"
                                         placeholder="Lugar de nacimiento">
                                     <span class="input-group-addon">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-                                    <input name="mes" type="text" required class="form-control"
+                                    <input name="fechanac" type="text" required class="form-control"
                                         placeholder="Fecha de nacimiento">
                                     <span class="input-group-addon">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-                                    <input name="mes" type="text" required class="form-control" placeholder="Edad">
+                                    <input name="edad" type="text" required class="form-control" placeholder="Edad">
                                 </div>
                             </div>
                         </div>
@@ -132,7 +130,7 @@ include './navegador/nav.php';
                 <br>
                 <div class="form-row mt-3">
                     <div class="form-group col-md-6">
-                        <input type="text" class="form-control" id="inputCity" placeholder="Calle">
+                        <input type="text" class="form-control" id="calle" placeholder="Calle">
                     </div>
                 </div>
                 <div class="container">
@@ -140,15 +138,13 @@ include './navegador/nav.php';
                         <div class="col-xs-12">
                             <div class="form-group">
                                 <div class="input-group">
-                                    <input name="dia" type="text" required class="form-control"
-                                        placeholder="No. Exterior">
+                                    <input name="noext" type="text" required class="form-control" placeholder="No. Exterior">
                                     <span class="input-group-addon">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-                                    <input name="mes" type="text" required class="form-control"
-                                        placeholder="No. Interior">
+                                    <input name="noint" type="text" required class="form-control" placeholder="No. Interior">
                                     <span class="input-group-addon">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-                                    <input name="mes" type="text" required class="form-control" placeholder="CP">
+                                    <input name="cp" type="text" required class="form-control" placeholder="CP">
                                     <span class="input-group-addon">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-                                    <input name="mes" type="text" required class="form-control" placeholder="Tiempo">
+                                    <input name="antiguedad" type="text" required class="form-control" placeholder="Antiguedad">
                                 </div>
                             </div>
                         </div>
@@ -159,10 +155,11 @@ include './navegador/nav.php';
                         <div class="col-xs-12">
                             <div class="form-group">
                                 <div class="input-group">
-                                    <input name="dia" type="text" required class="form-control" placeholder="Municipio">
+                                    <input name="municipio" type="text" required class="form-control" placeholder="Municipio">
                                     <span class="input-group-addon">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-                                    <input name="mes" type="text" required class="form-control"
-                                        placeholder="Entidad Federativa">
+                                    <input name="entidadfed" type="text" required class="form-control" placeholder="Entidad Federativa">
+                                    <span class="input-group-addon">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                                    <input name="seccion" type="text" required class="form-control" placeholder="Sección">
                                 </div>
                             </div>
                         </div>
@@ -171,40 +168,40 @@ include './navegador/nav.php';
                 <div class="form-row">
                     <div class="form-group col-md-6">
                         <label for="inputCity">Colonia</label>
-                        <input type="text" class="form-control" id="inputCity">
+                        <input type="text" name="seccion" class="form-control" id="inputCity">
                     </div>
                 </div>
                 <div class="form-row">
                     <div class="form-group col-md-6">
                         <label for="inputCity">Referencias</label>
-                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                        <input name="ref" class="form-control" id="exampleFormControlTextarea1" rows="3" style= "height:120px;">
                     </div>
                 </div>
                 <div class="form-row">
                     <div class="form-group col-md-6">
-                        <div id="map" ></div>
+                        <div id="map" name="map"></div>
                     </div>
                 </div>
                 <script>
-                var map = L.map('map').
-                setView([41.66, -4.72],
+                var ubicacion = L.map('map').
+                setView([18.50361, -88.30528],
                     14);
 
                 L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
                     attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://cloudmade.com">CloudMade</a>',
                     maxZoom: 18
-                }).addTo(map);
+                }).addTo(ubicacion);
 
-                L.control.scale().addTo(map);
-                L.marker([41.66, -4.71], {
+                L.control.scale().addTo(ubicacion);
+                L.marker([18.50361, -88.30528], {
                     draggable: true
-                }).addTo(map);
+                }).addTo(ubicacion);
                 </script>
                 <strong style="color:#DA92B2;">Añadir foto del domicilio</strong>
                 <div class="form-row mt-3">
                     <div class="form-group col-md-6">
                         <div class="form-group">
-                            <input type="file" class="form-control-file" id="exampleFormControlFile1">
+                            <input name="fotocasa" type="file" class="form-control-file" id="exampleFormControlFile1">
                         </div>
                     </div>
                 </div>
@@ -214,15 +211,15 @@ include './navegador/nav.php';
                         <div class="col-xs-12">
                             <div class="form-group">
                                 <div class="input-group">
-                                    <input name="dia" type="text" required class="form-control" placeholder="Telefono">
+                                    <input name="telefono" type="text" required class="form-control" placeholder="Telefono">
                                     <span class="input-group-addon">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-                                    <input name="mes" type="text" required class="form-control"
-                                        placeholder="Escolaridad">
+                                    <input name="escolaridad" type="text" required class="form-control" placeholder="Escolaridad">
                                     <span class="input-group-addon">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-                                    <input name="mes" type="text" required class="form-control"
-                                        placeholder="Estado civil">
+                                    <input name="estadocivil" type="text" required class="form-control" placeholder="Estado civil">
                                     <span class="input-group-addon">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-                                    <input name="mes" type="text" required class="form-control" placeholder="Religión">
+                                    <input name="religion" type="text" required class="form-control" placeholder="Religión">
+                                    <span class="input-group-addon">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                                    <input name="numhijos" type="text" required class="form-control" placeholder="Numero de hijos">
                                 </div>
                             </div>
                         </div>
@@ -232,19 +229,19 @@ include './navegador/nav.php';
                 <div class="form-row">
                     <div class="form-group col-md-6">
                         <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-                            <label class="form-check-label" for="defaultCheck1">
+                            <input class="form-check-input" type="radio" name="servicio" id="exampleRadios1"
+                                value="Si" checked>
+                            <label class="form-check-label" for="exampleRadios1">
                                 Si
                             </label>
                         </div>
                         <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="defaultCheck2">
-                            <label class="form-check-label" for="defaultCheck2">
+                            <input class="form-check-input" type="radio" name="servicio" id="exampleRadios2"
+                                value="No">
+                            <label class="form-check-label" for="exampleRadios2">
                                 No
                             </label>
                         </div>
-                        <input name="mes" type="text" required class="form-control"
-                            placeholder="¿Cuál es el servicio médico?">
                     </div>
                 </div>
                 <strong style="color:#DA92B2;">Contacto de emergencia</strong>
@@ -253,32 +250,11 @@ include './navegador/nav.php';
                         <div class="col-xs-12">
                             <div class="form-group">
                                 <div class="input-group">
-                                    <input name="dia" type="text" required class="form-control" placeholder="Nombre">
+                                    <input name="nombre" type="text" required class="form-control" placeholder="Nombre">
                                     <span class="input-group-addon">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-                                    <input name="mes" type="text" required class="form-control"
-                                        placeholder="Parentesco">
+                                    <input name="parentesco" type="text" required class="form-control" placeholder="Parentesco">
                                     <span class="input-group-addon">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-                                    <input name="mes" type="text" required class="form-control" placeholder="Teléfono">
-                                    <span class="input-group-addon">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-                                    <input name="mes" type="text" required class="form-control"
-                                        placeholder="Numero de hijos">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <strong style="color:#DA92B2;">Hijo #1</strong>
-                <div class="container">
-                    <div class="row">
-                        <div class="col-xs-12">
-                            <div class="form-group">
-                                <div class="input-group">
-                                    <input name="dia" type="text" required class="form-control" placeholder="Nombre">
-                                    <span class="input-group-addon">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-                                    <input name="mes" type="text" required class="form-control" placeholder="Edad">
-                                    <span class="input-group-addon">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-                                    <input name="mes" type="text" required class="form-control"
-                                        placeholder="Escolaridad">
+                                    <input name="telefonopar" type="text" required class="form-control" placeholder="Teléfono">
                                 </div>
                             </div>
                         </div>

@@ -24,9 +24,9 @@ include './navegador/nav.php';
                             <div class="col-xs-12">
                                 <div class="form-group">
                                     <div class="input-group">
-                                        <input name="dia" type="text" required class="form-control" placeholder="Edad">
+                                        <input name="edad" type="text" required class="form-control" placeholder="Edad">
                                         <span class="input-group-addon">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-                                        <input name="mes" type="text" required class="form-control" placeholder="Escolaridad">
+                                        <input name="escolaridad" type="text" required class="form-control" placeholder="Escolaridad">
                                         <span class="input-group-addon">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
                                     </div>
                                 </div>
@@ -37,52 +37,23 @@ include './navegador/nav.php';
                     <div class="form-row">
                         <div class="form-group col-md-6">
                             <label for="inputCity">Numero de contacto</label>
-                            <input type="text" class="form-control" id="inputCity">
+                            <input name="telefono" type="text" class="form-control" id="inputCity">
                         </div>
                     </div>
-                    <strong style="color:#DA92B2;">Primera llamada</strong>
+                    <strong style="color:#DA92B2;">Datos de llamada</strong>
                     <div class="form-row mt-3">
-                        <div class="form-group col-md-6">
-                            <label for="inputCity">Fecha</label>
-                            <input type="text" class="form-control" id="inputCity">
+                        <div class="col-xs-12">
+                            <label for="">Fecha</label><br>
+                            <?php
+                                date_default_timezone_set('America/Mexico_City');
+                                echo date('d/m/y');
+                            ?><br><br>
                         </div>
                     </div>
                     <div class="form-row">
                         <div class="form-group col-md-6">
                             <label for="inputCity">Comentarios</label>
-                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-                        </div>
-                    </div>
-                    <strong style="color:#DA92B2;">Segunda llamada</strong>
-                    <div class="form-row mt-3">
-                        <div class="form-group col-md-6">
-                            <label for="inputCity">Fecha</label>
-                            <input type="text" class="form-control" id="inputCity">
-                        </div>
-                    </div>
-                    <div class="form-row">
-                        <div class="form-group col-md-6">
-                            <label for="inputCity">Comentarios</label>
-                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-                        </div>
-                    </div>
-                    <strong style="color:#DA92B2;">Tercera llamada</strong>
-                    <div class="form-row mt-3">
-                        <div class="form-group col-md-6">
-                            <label for="inputCity">Fecha</label>
-                            <input type="text" class="form-control" id="inputCity">
-                        </div>
-                    </div>
-                    <div class="form-row">
-                        <div class="form-group col-md-6">
-                            <label for="inputCity">Comentarios</label>
-                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-                        </div>
-                    </div>
-                    <div class="form-row">
-                        <div class="form-group col-md-6">
-                            <label for="inputCity">Observación final</label>
-                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                            <input name="comentarios" class="form-control" id="exampleFormControlTextarea1" rows="3" style= "height:120px;">
                         </div>
                     </div>
                 </form>

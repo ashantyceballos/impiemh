@@ -7,40 +7,47 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
         <link rel="stylesheet" href="./css/styles.css">
-    </head>
+</head>
 <?php
 include './navegador/nav.php';
 ?>
     <div class="container">
         <div class="row">
             <div class="col text-center p-3 rounded-pill" style="background-color:#E14B9A;" id="agenda">
-                <strong class="h3" style="color:#fff; ">Agendar evento</strong>
+                <strong class="h3" style="color:#fff; ">Enviar expediente</strong>
             </div>
-            <br>
             <div class="container mt-3">
                 <form>
                     <div class="form-row">
                         <div class="form-group col-md-6">
-                            <label for="inputCity">Día de la cita</label>
+                            <label for="inputCity">No. Expediente</label>
                             <input type="text" class="form-control" id="inputCity">
                         </div>
                     </div>
                     <div class="form-row">
                         <div class="form-group col-md-6">
-                            <label for="inputCity">Horario</label>
+                            <label for="inputCity">Destinatario</label>
                             <input type="text" class="form-control" id="inputCity">
                         </div>
                     </div>
                     <div class="form-row">
                         <div class="form-group col-md-6">
-                            <label for="inputCity">Tipo</label>
+                            <label for="inputCity">Remitente</label>
                             <input type="text" class="form-control" id="inputCity">
                         </div>
                     </div>
                     <div class="form-row">
                         <div class="form-group col-md-6">
-                            <label for="inputCity">Psicóloga</label>
-                            <input type="text" class="form-control" id="inputCity">
+                            <label for="inputCity">Fecha</label><br>
+                            <input type="date" id="start" name="fecha"
+                                value="2022-08-02"
+                                min="2022-01-01" max="2022-12-31">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="inputCity">Observación</label>
+                            <input name="observacion" class="form-control" id="exampleFormControlTextarea1" rows="3" style= "height:120px;">
                         </div>
                     </div>
                 </form>
@@ -54,7 +61,7 @@ include './navegador/nav.php';
                 <div class="col-6">
                     <form method="get" action="guardar.php">
                         <button style="background-color: #DA92B2;" type="submit"
-                            class="btn btn-primary btn-block"><strong class="h3">Guardar evento</strong></button>
+                            class="btn btn-primary btn-block"><strong class="h3">Guardar</strong></button>
                     </form>
                 </div>
             </div>

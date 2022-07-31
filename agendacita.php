@@ -31,11 +31,23 @@ include './navegador/nav.php';
                         </div>
                     </div>
                     <div class="form-row">
-                        <div class="form-group col-md-6">
-                            <label for="inputCity">Tipo</label>
-                            <input type="text" class="form-control" id="inputCity">
+                    <div class="form-group col-md-6">
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="tipo" id="exampleRadios1"
+                                value="Cita" checked>
+                            <label class="form-check-label" for="exampleRadios1">
+                                Cita
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="tipo" id="exampleRadios2"
+                                value="Evento">
+                            <label class="form-check-label" for="exampleRadios2">
+                                Evento
+                            </label>
                         </div>
                     </div>
+                </div>
                     <div class="form-row">
                         <div class="form-group col-md-6">
                             <label for="inputCity">Psicóloga</label>

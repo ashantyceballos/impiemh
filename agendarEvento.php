@@ -22,25 +22,43 @@ include './navegador/nav.php';
                     <div class="form-row">
                         <div class="form-group col-md-6">
                             <label for="inputCity">Día de la cita</label>
-                            <input type="text" class="form-control" id="inputCity">
+                            <input name="dia" type="text" class="form-control" id="inputCity">
                         </div>
                     </div>
                     <div class="form-row">
                         <div class="form-group col-md-6">
                             <label for="inputCity">Horario</label>
-                            <input type="text" class="form-control" id="inputCity">
+                            <input name="hora" type="text" class="form-control" id="inputCity">
                         </div>
                     </div>
                     <div class="form-row">
-                        <div class="form-group col-md-6">
-                            <label for="inputCity">Tipo</label>
-                            <input type="text" class="form-control" id="inputCity">
+                    <div class="form-group col-md-6">
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="tipo" id="exampleRadios1"
+                                value="Evento" checked>
+                            <label class="form-check-label" for="exampleRadios1">
+                                Evento
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="tipo" id="exampleRadios2"
+                                value="Cita">
+                            <label class="form-check-label" for="exampleRadios2">
+                                Cita
+                            </label>
                         </div>
                     </div>
+                </div>
                     <div class="form-row">
                         <div class="form-group col-md-6">
                             <label for="inputCity">Psicóloga</label>
-                            <input type="text" class="form-control" id="inputCity">
+                            <input name="psicologa" type="text" class="form-control" id="inputCity">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="inputCity">Tema</label>
+                            <input name="tema" class="form-control" id="exampleFormControlTextarea1" rows="3" style= "height:80px;">
                         </div>
                     </div>
                 </form>
