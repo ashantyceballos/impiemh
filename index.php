@@ -38,7 +38,7 @@
         </div>
     </div>
     </div>
-
+    <hr>
     <div class="footer mt-2 text-center">
         Copyright &copy; 2022 &mdash; IMPIEMH
     </div>
