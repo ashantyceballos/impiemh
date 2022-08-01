@@ -9,10 +9,6 @@
         <link rel="stylesheet" href="./css/styles.css">
 </head>
 <?php
-    $server = "localhost";
-    $data = json_decode(file_get_contents("http://".$server."/controller/expedientes.php?opcion=get"), true);
-?>
-<?php
 include './navegador/nav.php';
 ?>
     <div class="container">
@@ -63,10 +59,11 @@ include './navegador/nav.php';
                         $remitente = $_POST['remitente'];
                         $fecha = $_POST['fecha'];
                         $observacion = $_POST['observacion'];
-                        $arrayId = array('id_paciente' => $id_paciente, 'destinatario' => $destinatario, 'remitente' => $remitente, 'precio' => $fecha, 'observacion' => $observacion);
+                        $arrayId = array('id_paciente' => $id_paciente, 'destinatario' => $destinatario, 'remitente' => $remitente, 'fecha' => $fecha, 'observacion' => $observacion);
+                        print_r($arrayId);
                         $json_data = json_encode($arrayId); // Datos convetidos a JSON
-                        $server = $_POST['server'];
-                        $uri = "http://".$server."/controller/expedientes.php?opcion=insert";
+                        $server = "impiemh-apirest.herokuapp.com";
+                        $uri = "https://$server/controller/expedientes.php?opcion=insert";
                         $curl = curl_init($uri);
                         curl_setopt($curl, CURLOPT_POST, true);
                         curl_setopt($curl, CURLOPT_POSTFIELDS, $json_data);
@@ -79,7 +76,7 @@ include './navegador/nav.php';
                         curl_close($curl);
                         // 
                         $data = json_decode($respuesta, true);
-                        //print_r($data[0]);
+                        print_r($data[1]);
                     }
                     if (empty($data)) {
                         echo '<p>No se ha enviado un expediente aún</p>';
