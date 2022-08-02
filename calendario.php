@@ -45,6 +45,8 @@ table td a img {
 </head>
 <?php
 include './navegador/nav.php';
+$server = "impiemh-apirest.herokuapp.com";
+$data = json_decode(file_get_contents("https://".$server."/controller/citas.php?opcion=getCitas"),true);
 ?>
     <div class="col text-center p-3 rounded-pill" style="background-color:#E14B9A;" id="agenda">
         <strong class="h3" style="color:#fff; ">Agenda general</strong>
@@ -89,7 +91,7 @@ include './navegador/nav.php';
     <div class="container m-3">
         <div class="row">
             <div class="col text-center p-3" style="background-color:#FFECF4;">
-                <strong class="h3" style="color:#E14B9A; ">Julio - 05/07/2022</strong>
+                <strong class="h3" style="color:#E14B9A; ">Agosto 02</strong>
             </div>
             <div class="col"></div>
             <div class="col"></div>
@@ -99,166 +101,51 @@ include './navegador/nav.php';
     <div class="container">
         <div class="row">
             <div class="col">
+            <?php 
+                              if (empty($data)) {
+                                    echo ('<p class="font_alt">No hay citas registradas</p>');
+                                }else{                                   
+                            ?>
                 <table class="table">
                     <thead>
                         <tr>
-                            <th scope="col">Paciente</th>
-                            <th scope="col">Fecha</th>
-                            <th scope="col">Horario</th>
-                            <th scope="col">Psicologo</th>
-                            <th scope="col">No. Expediente</th>
-                            <th scope="col">Sexo</th>
+                            <th scope="col">Hora</th>
+                            <th scope="col">Tipo</th>
+                            <th scope="col">Psicologa</th>
+                            <th scope="col">Nombre paciente</th>
                             <th scope="col">Acción</th>
                         </tr>
                     </thead>
                     <tr>
-                        <td>Jonathan Josue Chel Madrid</td>
-                        <td>24/07/2022</td>
-                        <td>9:00am</td>
-                        <td>Andrea Peréz Martínez</td>
-                        <td>MOPB-IMPIEMH-171-2022</td>
-                        <td>Masculino</td>
-                        <td>
-                            <a href="verDato.php">
-                                <img src="img/icon-lapiz.PNG" class="img-fluid img-thumbnail">
-                            </a>
-                            <a href="verDato.php">
-                                <img src="img/icon-ojo.PNG" class="img-fluid img-thumbnail">
-                            </a>
-                            <a href="verDato.php">
-                                <img src="img/icon-bote.PNG" class="img-fluid img-thumbnail">
-                            </a>
-                        </td>
-
-                    </tr>
-                    <tr>
-                        <td>Ashanty Lizeth Ceballos Pech</td>
-                        <td>24/07/2022</td>
-                        <td>9:00am</td>
-                        <td>Andrea Peréz Martínez</td>
-                        <td>MOPB-IMPIEMH-171-2022</td>
-                        <td>Femenino</td>
-                        <td>
-                            <a href="verDato.php">
-                                <img src="img/icon-lapiz.PNG" class="img-fluid img-thumbnail">
-                            </a>
-                            <a href="verDato.php">
-                                <img src="img/icon-ojo.PNG" class="img-fluid img-thumbnail">
-                            </a>
-                            <a href="verDato.php">
-                                <img src="img/icon-bote.PNG" class="img-fluid img-thumbnail">
-                            </a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Brayan Ulises Luna Castro</td>
-                        <td>24/07/2022</td>
-                        <td>9:00am</td>
-                        <td>Andrea Peréz Martínez</td>
-                        <td>MOPB-IMPIEMH-171-2022</td>
-                        <td>Masculino</td>
-                        <td>
-                            <a href="verDato.php">
-                                <img src="img/icon-lapiz.PNG" class="img-fluid img-thumbnail">
-                            </a>
-                            <a href="verDato.php">
-                                <img src="img/icon-ojo.PNG" class="img-fluid img-thumbnail">
-                            </a>
-                            <a href="verDato.php">
-                                <img src="img/icon-bote.PNG" class="img-fluid img-thumbnail">
-                            </a>
-                        </td>
-                    </tr>
+                    <tbody>
+                    <?php
+                        for ($i=0; $i < count($data); $i++) { 
+                            echo "
+                            <tr>
+                                <th scope='row'>".$data[$i]["hora"]."</th>
+                                <td>".$data[$i]["tipo"]."</td>
+                                <td>".$data[$i]["psicologa"]."</td>
+                                <td>".$data[$i]["nombrep"]."</td>
+                                <td>
+                                    <a href='editarExpediente.php'>
+                                        <img src='img/icon-lapiz.PNG' class='img-fluid img-thumbnail'>
+                                    </a>
+                                    <a href='verDato.php'>
+                                        <img src='img/icon-ojo.PNG' class='img-fluid img-thumbnail'>
+                                    </a>
+                                    <a href='verDato.php'>
+                                        <img src='img/icon-bote.PNG' class='img-fluid img-thumbnail'>
+                                    </a>
+                                </td>
+                            </tr>
+                            ";
+                        }
+                    ?>
                     </tbody>
                 </table>
-            </div>
-        </div>
-    </div>
-    <div class="container m-3">
-        <div class="row">
-            <div class="col text-center p-3" style="background-color:#FFECF4;">
-                <strong class="h3" style="color:#E14B9A; ">Julio - 06/07/2022</strong>
-            </div>
-            <div class="col"></div>
-            <div class="col"></div>
-        </div>
-    </div>
-    <br>
-    <div class="container">
-        <div class="row">
-            <div class="col">
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th scope="col">Paciente</th>
-                            <th scope="col">Fecha</th>
-                            <th scope="col">Horario</th>
-                            <th scope="col">Psicologo</th>
-                            <th scope="col">No. Expediente</th>
-                            <th scope="col">Sexo</th>
-                            <th scope="col">Acción</th>
-                        </tr>
-                    </thead>
-                    <tr>
-                        <td>Jonathan Josue Chel Madrid</td>
-                        <td>24/07/2022</td>
-                        <td>9:00am</td>
-                        <td>Andrea Peréz Martínez</td>
-                        <td>MOPB-IMPIEMH-171-2022</td>
-                        <td>Masculino</td>
-                        <td>
-                            <a href="verDato.php">
-                                <img src="img/icon-lapiz.PNG" class="img-fluid img-thumbnail">
-                            </a>
-                            <a href="verDato.php">
-                                <img src="img/icon-ojo.PNG" class="img-fluid img-thumbnail">
-                            </a>
-                            <a href="verDato.php">
-                                <img src="img/icon-bote.PNG" class="img-fluid img-thumbnail">
-                            </a>
-                        </td>
-
-                    </tr>
-                    <tr>
-                        <td>Ashanty Lizeth Ceballos Pech</td>
-                        <td>24/07/2022</td>
-                        <td>9:00am</td>
-                        <td>Andrea Peréz Martínez</td>
-                        <td>MOPB-IMPIEMH-171-2022</td>
-                        <td>Femenino</td>
-                        <td>
-                            <a href="verDato.php">
-                                <img src="img/icon-lapiz.PNG" class="img-fluid img-thumbnail">
-                            </a>
-                            <a href="verDato.php">
-                                <img src="img/icon-ojo.PNG" class="img-fluid img-thumbnail">
-                            </a>
-                            <a href="verDato.php">
-                                <img src="img/icon-bote.PNG" class="img-fluid img-thumbnail">
-                            </a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Brayan Ulises Luna Castro</td>
-                        <td>24/07/2022</td>
-                        <td>9:00am</td>
-                        <td>Andrea Peréz Martínez</td>
-                        <td>MOPB-IMPIEMH-171-2022</td>
-                        <td>Masculino</td>
-                        <td>
-                            <a href="verDato.php">
-                                <img src="img/icon-lapiz.PNG" class="img-fluid img-thumbnail">
-                            </a>
-                            <a href="verDato.php">
-                                <img src="img/icon-ojo.PNG" class="img-fluid img-thumbnail">
-                            </a>
-                            <a href="verDato.php">
-                                <img src="img/icon-bote.PNG" class="img-fluid img-thumbnail">
-                            </a>
-                        </td>
-                    </tr>
-                    </tbody>
-                </table>
+                <?php
+                                }
+                                ?>
             </div>
         </div>
     </div>

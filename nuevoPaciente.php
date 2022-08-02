@@ -13,8 +13,6 @@
 </head>
 <?php
     include './navegador/nav.php';
-    $server = "impiemh-apirest.herokuapp.com";
-    $data = json_decode(file_get_contents("http://".$server."/controller/productos.php?opcion=get"), true);
 ?>
 <div class="container">
     <div class="row">
@@ -96,14 +94,16 @@
                 <div class="form-row">
                     <div class="form-group col-md-6">
                         <div class="form-check">
-                            <input class="form-check-input" type="checkbox" name="servicio" value="Si" id="defaultCheck1">
-                            <label class="form-check-label" for="defaultCheck1">
+                            <input class="form-check-input" type="radio" name="servicio" id="exampleRadios1"
+                                value="Si" checked>
+                            <label class="form-check-label" for="exampleRadios1">
                                 Si
                             </label>
                         </div>
                         <div class="form-check">
-                            <input class="form-check-input" type="checkbox" name="servicio" value="No" id="defaultCheck2">
-                            <label class="form-check-label" for="defaultCheck2">
+                            <input class="form-check-input" type="radio" name="servicio" id="exampleRadios2"
+                                value="No">
+                            <label class="form-check-label" for="exampleRadios2">
                                 No
                             </label>
                         </div>
@@ -116,13 +116,20 @@
                                 <div class="input-group">
                                     <input name="lugarnac" type="text" required class="form-control"
                                         placeholder="Lugar de nacimiento">
-                                    <span class="input-group-addon">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-                                    <input name="fechanac" type="text" required class="form-control"
-                                        placeholder="Fecha de nacimiento">
-                                    <span class="input-group-addon">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                                        <span class="input-group-addon">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                                        <div class="form-row">
+                                            <div class="form-group col-md-6">
+                                                <label for="inputCity">Fecha Nacimiento</label><br>
+                                                <input type="date" id="start" name="fechanac"
+                                                    value="2022-08-02"
+                                                    min="1600-01-01" max="2022-12-31">
+                                            </div>
+                                        </div>
+                                    <br>
                                     <input name="edad" type="text" required class="form-control" placeholder="Edad">
                                 </div>
                             </div>
+                            
                         </div>
                     </div>
                 </div>
@@ -130,7 +137,7 @@
                 <br>
                 <div class="form-row mt-3">
                     <div class="form-group col-md-6">
-                        <input type="text" class="form-control" id="calle" placeholder="Calle">
+                        <input type="text" class="form-control" name="calle" placeholder="Calle">
                     </div>
                 </div>
                 <div class="container">
@@ -168,7 +175,7 @@
                 <div class="form-row">
                     <div class="form-group col-md-6">
                         <label for="inputCity">Colonia</label>
-                        <input type="text" name="seccion" class="form-control" id="inputCity">
+                        <input type="text" name="colonia" class="form-control" id="inputCity">
                     </div>
                 </div>
                 <div class="form-row">
@@ -229,19 +236,20 @@
                 <div class="form-row">
                     <div class="form-group col-md-6">
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" name="servicio" id="exampleRadios1"
+                            <input class="form-check-input" type="radio" name="servmedico" id="exampleRadios1"
                                 value="Si" checked>
                             <label class="form-check-label" for="exampleRadios1">
                                 Si
                             </label>
                         </div>
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" name="servicio" id="exampleRadios2"
+                            <input class="form-check-input" type="radio" name="servmedico" id="exampleRadios2"
                                 value="No">
                             <label class="form-check-label" for="exampleRadios2">
                                 No
                             </label>
                         </div>
+                        <input name="nomservmed" type="text" required class="form-control" placeholder="Servicio médico">
                     </div>
                 </div>
                 <strong style="color:#DA92B2;">Contacto de emergencia</strong>
@@ -250,7 +258,7 @@
                         <div class="col-xs-12">
                             <div class="form-group">
                                 <div class="input-group">
-                                    <input name="nombre" type="text" required class="form-control" placeholder="Nombre">
+                                    <input name="nombrecontactoem" type="text" required class="form-control" placeholder="Nombre">
                                     <span class="input-group-addon">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
                                     <input name="parentesco" type="text" required class="form-control" placeholder="Parentesco">
                                     <span class="input-group-addon">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
@@ -260,22 +268,98 @@
                         </div>
                     </div>
                 </div>
+                <input name="ingresar" type="submit" style="background-color: #DA92B2;" class="btn" value="Guardar paciente">
             </form>
+            <?php
+                    if (isset($_POST['ingresar'])) {
+                        $noexpediente = $_POST['noexpediente'];
+                        $nombre = $_POST['nombre'];
+                        $apellidop = $_POST['apellidop'];
+                        $apellidom = $_POST['apellidom'];
+                        $sexo = $_POST['sexo'];
+                        $servicio = $_POST['servicio'];
+                        $lugarnac = $_POST['lugarnac'];
+                        $fechanac = $_POST['fechanac'];
+                        $edad = $_POST['edad'];
+                        $calle = $_POST['calle'];
+                        $noext = $_POST['noext'];
+                        $noint = $_POST['noint'];
+                        $cp = $_POST['cp'];
+                        $antiguedad = $_POST['antiguedad'];
+                        $municipio = $_POST['municipio'];
+                        $entidadfed = $_POST['entidadfed'];
+                        $colonia = $_POST['colonia'];
+                        $seccion = $_POST['seccion'];
+                        $ref = $_POST['ref'];
+                        $fotocasa = $_POST['fotocasa'];
+                        $telefono = $_POST['telefono'];
+                        $escolaridad = $_POST['escolaridad'];
+                        $estadocivil= $_POST['estadocivil'];
+                        $religion = $_POST['religion'];
+                        $numhijos = $_POST['numhijos'];
+                        $servmedico = $_POST['servmedico'];
+                        $nomservmed = $_POST['nomservmed'];
+                        $nombrecontactoem = $_POST['nombrecontactoem'];
+                        $parentesco = $_POST['parentesco'];
+                        $telefonopar = $_POST['telefonopar'];
+                        $arrayId = array(
+                            'noexpediente' => $noexpediente,
+                            'nombre' => $nombre,
+                            'apellidop' => $apellidop,
+                            'apellidom' => $apellidom,
+                            'sexo' => $sexo,
+                            'servicio' => $servicio,
+                            'lugarnac' => $lugarnac,
+                            'fechanac' => $fechanac,
+                            'edad' => $edad,
+                            'calle' => $calle,
+                            'noext' => $noext,
+                            'noint' => $noint,
+                            'cp' => $cp,
+                            'antiguedad' => $antiguedad,
+                            'municipio' => $municipio,
+                            'entidadfed' => $entidadfed,
+                            'colonia' => $colonia,
+                            'seccion' => $seccion,
+                            'ref' => $ref,
+                            'fotocasa' => $fotocasa,
+                            'telefono' => $telefono,
+                            'escolaridad' => $escolaridad,
+                            'estadocivil' => $estadocivil,
+                            'religion' => $religion,
+                            'numhijos' => $numhijos,
+                            'servmedico' => $servmedico,
+                            'nomservmed' => $nomservmed,
+                            'nombrecontactoem' => $nombrecontactoem,
+                            'parentesco' => $parentesco,
+                            'telefonopar' => $telefonopar);
+                        $json_data = json_encode($arrayId); // Datos convetidos a JSON
+                        $server = "impiemh-apirest.herokuapp.com";
+                        $uri = "https://$server/controller/pacientes.php?opcion=insert";
+                        $curl = curl_init($uri);
+                        curl_setopt($curl, CURLOPT_POST, true);
+                        curl_setopt($curl, CURLOPT_POSTFIELDS, $json_data);
+                        curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+                        $headers = array(
+                            "Content-Type" => "application/json",
+                        );
+                        curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
+                        $respuesta = curl_exec($curl);
+                        curl_close($curl);
+                        // 
+                        $data = json_decode($respuesta, true);
+                    }
+                    if (empty($data)) {
+                        echo '<p>No se ha registrado al paciente aún</p>';
+                    } else {
+                        echo '<div class="alert alert-success">Paciente ingresado</div>';
+                    }
+                    ?>
         </div>
     </div>
 </div>
 </div>
 <br>
-<div class="container">
-    <div class="row">
-        <div class="col-6">
-            <form method="get" action="guardar.php">
-                <button style="background-color: #DA92B2;" type="submit" class="btn btn-primary btn-block"><strong
-                        class="h3">Guardar paciente</strong></button>
-            </form>
-        </div>
-    </div>
-</div>
 </div>
 
 </body>

@@ -41,7 +41,7 @@
 			
 								<div class="form-group">
 									<label for="password">Contraseña</label>
-									<input id="password"  class="form-control" name="password" required data-eye>
+									<input type="password"  class="form-control" name="password" required data-eye>
 									<div class="invalid-feedback" >
 										Campo requerido
 									</div>

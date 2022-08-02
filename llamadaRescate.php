@@ -18,7 +18,7 @@ include './navegador/nav.php';
             </div>
             <br>
             <div class="container mt-3">
-                <form>
+            <form action="<?php $_SERVER['PHP_SELF']?>" method= "POST">
                     <div class="container">
                         <div class="row">
                             <div class="col-xs-12">
@@ -34,44 +34,65 @@ include './navegador/nav.php';
                         </div>
                     </div>
                     <strong>Datos generales</strong>
-                    <div class="form-row">
-                        <div class="form-group col-md-6">
-                            <label for="inputCity">Numero de contacto</label>
-                            <input name="telefono" type="text" class="form-control" id="inputCity">
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label for="inputCity">Número de contacto</label>
+                                <input name="numero" type="text" required class="form-control" placeholder="Edad">
+                            </div>
                         </div>
-                    </div>
-                    <strong style="color:#DA92B2;">Datos de llamada</strong>
-                    <div class="form-row mt-3">
-                        <div class="col-xs-12">
-                            <label for="">Fecha</label><br>
-                            <?php
-                                date_default_timezone_set('America/Mexico_City');
-                                echo date('d/m/y');
-                            ?><br><br>
+                        <strong style="color:#DA92B2;">Datos de llamada</strong>
+                        <div class="form-row mt-3">
+                            <div class="col-xs-12">
+                                <label for="">Fecha</label><br>
+                                <?php
+                                    date_default_timezone_set('America/Mexico_City');
+                                    echo date('d/m/y');
+                                ?><br><br>
+                            </div>
                         </div>
-                    </div>
-                    <div class="form-row">
-                        <div class="form-group col-md-6">
-                            <label for="inputCity">Comentarios</label>
-                            <input name="comentarios" class="form-control" id="exampleFormControlTextarea1" rows="3" style= "height:120px;">
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label for="inputCity">Comentarios</label>
+                                <input name="comentarios" class="form-control" id="exampleFormControlTextarea1" rows="3" style= "height:120px;">
+                            </div>
                         </div>
-                    </div>
+                        <input name="ingresar" type="submit" style="background-color: #DA92B2;" class="btn" value="Guardar">
                 </form>
+                <?php
+                    if (isset($_POST['ingresar'])) {
+                        $edad = $_POST['edad'];
+                        $escolaridad = $_POST['escolaridad'];
+                        $numero = $_POST['numero'];
+                        $comentarios = $_POST['comentarios'];
+                        $arrayId = array('edad' => $edad, 'escolaridad' => $escolaridad, 'numero' => $numero, 'comentarios' => $comentarios);
+                        
+                        $json_data = json_encode($arrayId); // Datos convetidos a JSON
+                        $server = "impiemh-apirest.herokuapp.com";
+                        $uri = "https://$server/controller/llamadas.php?opcion=insert";
+                        $curl = curl_init($uri);
+                        curl_setopt($curl, CURLOPT_POST, true);
+                        curl_setopt($curl, CURLOPT_POSTFIELDS, $json_data);
+                        curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+                        $headers = array(
+                            "Content-Type" => "application/json",
+                        );
+                        curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
+                        $respuesta = curl_exec($curl);
+                        curl_close($curl);
+                        // 
+                        $data = json_decode($respuesta, true);
+                    }
+                    if (empty($data)) {
+                        echo '<p>No se ha enviado los datos de la llamada aún</p>';
+                    } else {
+                        echo '<div class="alert alert-success">Llamada de rescate ingresada</div>';
+                    }
+                    ?>
             </div>
         </div>
     </div>
     </div>
     <br>
-    <div class="container">
-        <div class="row">
-            <div class="col-6">
-                <form method="get" action="guardar.php">
-                    <button style="background-color: #DA92B2;" type="submit" class="btn btn-primary btn-block"><strong
-                            class="h3">Guardar</strong></button>
-                </form>
-            </div>
-        </div>
-    </div>
     </div>
 
 </body>

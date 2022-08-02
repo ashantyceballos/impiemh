@@ -15,7 +15,7 @@ include './navegador/nav.php';
     <div class="container">
         <div class="row">
             <div class="col text-center p-3 rounded-pill" style="background-color:#E14B9A;" id="agenda">
-                <strong class="h3" style="color:#fff; ">Consultar paciente</strong>
+                <strong class="h3" style="color:#fff; ">Pacientes ingresados al mes</strong>
             </div>
             <br>
         </div>

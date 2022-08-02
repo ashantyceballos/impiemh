@@ -52,14 +52,14 @@
 
                                     <div class="form-group">
                                         <label for="password">Contraseña</label>
-                                        <input id="password" class="form-control" name="password" required data-eye>
+                                        <input type="password" class="form-control" name="password" required data-eye>
                                         <div class="invalid-feedback">
                                             Campo requerido
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label for="password">Confirmar contraseña</label>
-                                        <input id="password" class="form-control" name="password" required data-eye>
+                                        <label for="input">Confirmar contraseña</label>
+                                        <input type="password" class="form-control" name="password" required data-eye>
                                         <div class="invalid-feedback">
                                             Campo requerido
                                         </div>
@@ -70,7 +70,9 @@
 										<button style="background-color: #DA92B2;" type="submit"
 											class="btn btn-primary btn-block"><strong
 												class="h3">Registrar</strong></button>
+                                            
 									</form>
+                                    
 								</div>
                             </div>
                         </div>

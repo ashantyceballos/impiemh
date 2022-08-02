@@ -1,7 +1,7 @@
 <nav class="navbar  text-dark" style="background-color: #956F94; ">
     <div class="container-fluid">
         <a class="navbar h3" href="index.php" style="color: rgb(255, 255, 255);">IMPIEMH</a>
-        <a class="nav-link h3" style="color: rgb(255, 255, 255);" href="sesion.php">Usuario</a>
+        <a class="nav-link h4" style="color: rgb(255, 255, 255);" href="sesion.php">Ashanty ﹀</a>
     </div>
 </nav>
 

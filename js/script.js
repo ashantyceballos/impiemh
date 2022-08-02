@@ -39,7 +39,7 @@ const etiquetas = ["Femenino", "Masculino", "LGBTTIQ+"]
 // Podemos tener varios conjuntos de datos. Comencemos con uno
 const datosVentas2020 = {
     label: "Citas por mes",
-    data: [5000, 1500, 8000], // La data es un arreglo que debe tener la misma cantidad de valores que la cantidad de etiquetas
+    data: [1, 2, 0], // La data es un arreglo que debe tener la misma cantidad de valores que la cantidad de etiquetas
     backgroundColor: 'rgba(144, 0, 159, 1)', // Color de fondo
     borderColor: 'rgba(225, 75, 154, 1)', // Color del borde
     borderWidth: 3,// Ancho del borde

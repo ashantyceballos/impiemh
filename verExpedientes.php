@@ -1,102 +1,81 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <title>Bienvenido IMPIEMH</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-        <link rel="stylesheet" href="./css/styles.css">
+    <link rel="stylesheet" href="./css/styles.css">
 </head>
 <?php
 include './navegador/nav.php';
+$server = "impiemh-apirest.herokuapp.com";
+$data = json_decode(file_get_contents("https://".$server."/controller/expedientes.php?opcion=getExpedientes"),true);
 ?>
-    <div class="container">
-        <div class="row">
-            <div class="col text-center p-3 rounded-pill" style="background-color:#E14B9A;" id="agenda">
-                <strong class="h3" style="color:#fff; ">Expedientes</strong>
-            </div>
-            <br>
+
+<div class="container">
+    <div class="row">
+        <div class="col text-center p-3 rounded-pill" style="background-color:#E14B9A;" id="agenda">
+            <strong class="h3" style="color:#fff; ">Expedientes</strong>
         </div>
+        <br>
     </div>
+</div>
 <br>
-    <div class="container">
-        <div class="row">
-            <div class="col">
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th scope="col">No. Oficio</th>
-                            <th scope="col">Destinatario</th>
-                            <th scope="col">Remitente</th>
-                            <th scope="col">Fecha</th>
-                            <th scope="col">Observaciones</th>
-                            <th scope="col">Acción</th>
-                        </tr>
-                    </thead>
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <?php 
+                              if (empty($data)) {
+                                    echo ('<p class="font_alt">No hay expedientes enviados</p>');
+                                }else{
+                            ?>
+            <table class="table">
+                <thead>
                     <tr>
-                        <td>126</td>
-                        <td>Jonathan Josue Chel Madrid</td>
-                        <td>Desarrollo Social</td>
-                        <td>05/07/2022</td>
-                        <td>Archivado</td>
-                        <td>
-                            <a href="verDato.php">
-                                <img src="img/icon-lapiz.PNG" class="img-fluid img-thumbnail">
-                            </a>
-                            <a href="verDato.php">
-                                <img src="img/icon-ojo.PNG" class="img-fluid img-thumbnail">
-                            </a>
-                            <a href="verDato.php">
-                                <img src="img/icon-bote.PNG" class="img-fluid img-thumbnail">
-                            </a>
-                        </td>
-
-                    </tr>
-                    <tr>
-                    <td>126</td>
-                        <td>Ashanty Lizeth Ceballos Pech</td>
-                        <td>Desarrollo Social</td>
-                        <td>05/07/2022</td>
-                        <td>Archivado</td>
-                        <td>
-                            <a href="verDato.php">
-                                <img src="img/icon-lapiz.PNG" class="img-fluid img-thumbnail">
-                            </a>
-                            <a href="verDato.php">
-                                <img src="img/icon-ojo.PNG" class="img-fluid img-thumbnail">
-                            </a>
-                            <a href="verDato.php">
-                                <img src="img/icon-bote.PNG" class="img-fluid img-thumbnail">
-                            </a>
-                        </td>
-
-                    </tr>
-                    <tr>
-                    <td>126</td>
-                        <td>Andrea Perez Matínes</td>
-                        <td>Secretaría técnica</td>
-                        <td>05/07/2022</td>
-                        <td>Archivado</td>
-                        <td>
-                            <a href="verDato.php">
-                                <img src="img/icon-lapiz.PNG" class="img-fluid img-thumbnail">
-                            </a>
-                            <a href="verDato.php">
-                                <img src="img/icon-ojo.PNG" class="img-fluid img-thumbnail">
-                            </a>
-                            <a href="verDato.php">
-                                <img src="img/icon-bote.PNG" class="img-fluid img-thumbnail">
-                            </a>
-                        </td>
-                    </tr>
-                    </tbody>
-                </table>
-            </div>
+                        <th scope="col">No. Oficio</th>
+                        <th scope="col">Destinatario</th>
+                        <th scope="col">Remitente</th>
+                        <th scope="col">Fecha</th>
+                        <th scope="col">Observaciones</th>
+                        <th scope="col">Acción</th>
+                </thead>
+                <tbody>
+                    <?php 
+                                            for ($i=0; $i < count($data); $i++) { 
+                                                echo "
+                                                <tr>
+                                                    <th scope='row'>".$data[$i]["id_paciente"]."</th>
+                                                    <td>".$data[$i]["destinatario"]."</td>
+                                                    <td>".$data[$i]["remitente"]."</td>
+                                                    <td>".$data[$i]["fecha"]."</td>
+                                                    <td>".$data[$i]["observacion"]."</td>
+                                                    <td>
+                                                        <a href='editarExpediente.php'>
+                                                            <img src='img/icon-lapiz.PNG' class='img-fluid img-thumbnail'>
+                                                        </a>
+                                                        <a href='verDato.php'>
+                                                            <img src='img/icon-ojo.PNG' class='img-fluid img-thumbnail'>
+                                                        </a>
+                                                        <a href='verDato.php'>
+                                                            <img src='img/icon-bote.PNG' class='img-fluid img-thumbnail'>
+                                                        </a>
+                                                    </td>
+                                                </tr>
+                                                ";
+                                            }
+                                            ?>
+                </tbody>
+            </table>
+            <?php
+                                }
+                                ?>
         </div>
     </div>
+</div>
 
-</body>
 <hr>
 <div class="footer mt-2 text-center">
     Copyright &copy; 2022 &mdash; IMPIEMH

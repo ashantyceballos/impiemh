@@ -60,7 +60,7 @@ include './navegador/nav.php';
                         $fecha = $_POST['fecha'];
                         $observacion = $_POST['observacion'];
                         $arrayId = array('id_paciente' => $id_paciente, 'destinatario' => $destinatario, 'remitente' => $remitente, 'fecha' => $fecha, 'observacion' => $observacion);
-                        print_r($arrayId);
+                        
                         $json_data = json_encode($arrayId); // Datos convetidos a JSON
                         $server = "impiemh-apirest.herokuapp.com";
                         $uri = "https://$server/controller/expedientes.php?opcion=insert";
@@ -81,7 +81,7 @@ include './navegador/nav.php';
                     if (empty($data)) {
                         echo '<p>No se ha enviado un expediente aún</p>';
                     } else {
-                        echo '<p>Envío de expediente correcto</p>';
+                        echo '<div class="alert alert-success">Expediente ingresado</div>';
                     }
                     ?>
             </div>
